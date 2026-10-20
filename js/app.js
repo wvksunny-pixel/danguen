@@ -12,8 +12,11 @@
         <main>
           <${S.Hero} />
           <${S.Why} />
+          <${S.Principle} />
           <${S.Solution} />
+          <${S.Quality} />
           <${S.Demo} toast=${toast} />
+          <${S.WhyDaangn} />
           <${S.WhyWV} />
           <${S.Trust} />
           <${S.Value} />

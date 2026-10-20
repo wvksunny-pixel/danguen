@@ -20,10 +20,11 @@ python -m http.server 8780
 | --- | --- |
 | `index.html` | 진입점 |
 | `css/styles.css` | 디자인 토큰과 전체 스타일 |
-| `js/data.js` | 예시 물품·검수 상태·기관 유형 등 샘플 데이터 |
+| `js/data.js` | 예시 기관 수요·제공 물품·품질 등급·검수 상태 등 샘플 데이터 |
 | `js/ui.js` | 공용 컴포넌트 (배지, 태그, 모달, 물품 일러스트 등) |
-| `js/sections-intro.js` | 내비게이션 · Hero · Why · Solution |
-| `js/demo.js` | 서비스 화면 데모 (판매자 · AI 검수 · 기관 물품관 · 수요 매칭) |
-| `js/sections-wv.js` | Why World Vision |
-| `js/sections-ops.js` | Trust · Value · Operation · 가격·배송비 · Pilot · Closing · Footer |
+| `js/sections-intro.js` | 내비게이션 · Hero · Why · Solution (5단계) |
+| `js/sections-model.js` | Principle (수요 기반 원칙) · Quality (품질 기준) |
+| `js/demo.js` | 서비스 화면 데모 (기관 수요 등록 · 제공자 화면 · AI 검수 · 기관 선택·제공 확정) |
+| `js/sections-wv.js` | Why Daangn · Why World Vision |
+| `js/sections-ops.js` | Trust · Value · Operation · 무상 양도·택배비 후원 · Pilot · Closing · Footer |
 | `js/app.js` | 섹션 조립 |

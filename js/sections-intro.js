@@ -48,10 +48,10 @@
 
   /* ---------- HERO ---------- */
   const FLOW = [
-    { key: 'sale', label: '판매 중', sub: '등록 41일째 · 거래 없음' },
-    { key: 'apply', label: '기부 신청', sub: '판매자 자발적 전환 · 아직 확정 아님' },
-    { key: 'match', label: '기관 매칭', sub: '인증 기관 담당자가 직접 신청' },
-    { key: 'done', label: '전달 완료', sub: '기관 수령 확인 · 전달 기록' },
+    { key: 'sale', label: '기관 수요', sub: '예시 수요: 아동 상의 120 · 6벌 · S·A급 허용' },
+    { key: 'apply', label: '제공 신청', sub: '판매자가 수요에 맞춰 무상 양도 의사 등록 · 아직 확정 아님' },
+    { key: 'match', label: '품질 확인·확정', sub: 'AI 1차 검수 → 기관 선택 → 제공자 최종 동의' },
+    { key: 'done', label: '전달 완료', sub: '택배비 후원 재원으로 배송 · 기관 수령 확인' },
   ];
 
   function HeroVisual() {
@@ -78,12 +78,17 @@
           </div>
 
           <div className="hero-card hero-card--main">
+            <div className="hero-demand">
+              <span>연결된 수요</span>
+              <b>마포 ○○지역아동센터 · 아동 상의 120 · S·A급</b>
+              <span className="sample-label">예시</span>
+            </div>
             <div className="hero-card-top">
               <${ItemArt} icon="cardigan" tint="#FDEFE3" size="md" />
               <div className="hero-card-info">
                 <span className="sample-label">예시 물품</span>
                 <b>아동 니트 가디건</b>
-                <small>아동 의류 · 120 · 1벌 · 사용감 있음</small>
+                <small>아동 의류 · 120 · 1벌 · 잠정 A급</small>
                 <small className="muted">서울 마포구</small>
               </div>
             </div>
@@ -112,18 +117,18 @@
             <p className="hero-kicker"><span>당근 × 월드비전</span> 협업 제안 · 가칭 「다음 주인 찾기」</p>
             <h1 className="hero-title">팔리지 않은 물건에도,<br />다음 주인이 있습니다.</h1>
             <p className="hero-sub">
-              당근에서 거래되지 않은 물품을 AI가 검수하고,${' '}<br className="br-desk" />
-              필요한 기관이 직접 선택해 실제 전달까지 이어지는${' '}<br className="br-desk" />
-              수요 기반 기부 연결 모델.
+              필요한 물품을 먼저 확인하고, 기준에 맞는 물품만 연결하며,${' '}<br className="br-desk" />
+              전달에 필요한 비용은 후원으로 해결합니다.${' '}<br className="br-desk" />
+              당근에서 거래되지 않은 물품을 위한 수요 기반 연결 모델.
             </p>
             <div className="hero-cta">
               <button className="btn btn--primary" onClick=${() => scrollToId('solution')}>서비스 구조 보기</button>
               <button className="btn btn--ghost" onClick=${() => scrollToId('pilot')}>파일럿 제안 보기</button>
             </div>
             <dl className="hero-facts">
-              <div><dt>대상</dt><dd>판매되지 않은 중고 물품</dd></div>
-              <div><dt>선택</dt><dd>인증 기관이 필요한 것만</dd></div>
-              <div><dt>기준</dt><dd>실제 전달 완료 데이터</dd></div>
+              <div><dt>출발점</dt><dd>기관의 실제 수요</dd></div>
+              <div><dt>기준</dt><dd>사전에 정한 품질 등급</dd></div>
+              <div><dt>비용</dt><dd>무상 양도 · 택배비 후원</dd></div>
             </dl>
           </div>
           <${HeroVisual} />
@@ -189,44 +194,51 @@
   /* ---------- SOLUTION ---------- */
   const STEPS = [
     {
-      key: 'donate', en: 'DONATE', ko: '기부 전환 신청', who: '판매자',
-      summary: '일정 기간 판매되지 않은 물품의 판매자가 스스로 기부 전환을 신청합니다.',
+      key: 'need', en: 'NEED', ko: '기관 수요 등록', who: '협력기관 담당자',
+      summary: '기관 담당자가 필요한 물품을 먼저 등록합니다. 모든 흐름은 이 수요에서 시작합니다.',
       points: [
-        ['일정 기간 이상 판매되지 않은 물품이 대상 (기준 기간은 협의)', 'tbd'],
-        ['판매자가 자발적으로 기부 전환 신청 — 자동 전환 없음', 'new'],
-        ['기부 미성사 시 처리 방식(판매 재개 · 신청 유지 · 철회)을 신청 시 선택', 'new'],
-        ['기존 판매글·물품 정보·사진을 그대로 활용', 'existing'],
+        ['기관 유형 · 품목 · 사이즈/규격 · 수량 · 필요 시점 · 품질 기준 · 배송 가능 지역 등록', 'inst'],
+        ['기관 인증과 수요 검토', 'wv'],
+        ['기관용 수요 등록 화면', 'new'],
+      ],
+      ex: ['아동용 외투 110~120 사이즈 10벌', '아동용 가방 5개', '새 제품 또는 사용감이 거의 없는 아동 의류'],
+    },
+    {
+      key: 'recruit', en: 'RECRUIT', ko: '수요 기반 모집', who: '당근 · 판매자',
+      summary: '확인된 수요의 품목과 수량을 기준으로, 필요한 물품만 모집합니다.',
+      points: [
+        ['수요에 맞는 미판매 물품의 판매자에게 제공 신청 안내', 'existing'],
+        ['필요 수량이 충족되면 해당 모집 자동 종료', 'new'],
+        ['수요가 없는 물품은 모집하지 않음', 'wv'],
+        ['기관 수요가 취소·변경되면 모집 상태도 갱신', 'new'],
       ],
     },
     {
-      key: 'ai', en: 'AI CHECK', ko: 'AI 1차 검수', who: 'AI 시스템 + 담당자',
-      summary: 'AI는 품질을 보증하지 않습니다. 분류하고, 빠진 정보를 찾고, 사람이 볼 것을 골라냅니다.',
+      key: 'ai', en: 'AI CHECK', ko: 'AI 1차 검수·품질 확인', who: 'AI 시스템 + 담당자',
+      summary: 'AI는 품질을 보증하지 않습니다. 사전에 정한 기준으로 분류하고, 사람이 볼 것을 골라냅니다.',
       points: [
-        ['물품 카테고리 분류', 'new'],
-        ['등록 정보(사이즈·수량 등) 누락 확인', 'new'],
-        ['사진상 오염·훼손 의심 사항 표시', 'new'],
-        ['추가 사진 요청 · 사람의 검수 필요 여부 분류', 'new'],
-        ['검수 기준 및 최종 판단은 운영 주체가 정함', 'wv'],
+        ['사진·카테고리·상태 설명으로 잠정 품질 등급 추천', 'new'],
+        ['품질 기준 충족 가능 · 추가 사진 필요 · 사람의 확인 필요 · 기준 미달 가능성으로 분류', 'new'],
+        ['품질 기준 수립과 사람의 최종 확인', 'wv'],
       ],
     },
     {
-      key: 'match', en: 'INSTITUTION MATCH', ko: '기관 전용 물품관', who: '협력기관 담당자',
-      summary: '인증된 기관 담당자만 들어오는 물품관에서, 기관이 실제로 필요한 것만 직접 신청합니다.',
+      key: 'confirm', en: 'CONFIRM', ko: '물품 제공 확정', who: '기관 담당자 · 제공자',
+      summary: '기관이 필요한 물품을 선택하고, 제공자가 무상 양도에 최종 동의해야 확정됩니다.',
       points: [
-        ['기관 단위로 가입·인증된 담당자만 로그인', 'wv'],
-        ['기관별 필요 품목·사이즈·수량과 비교해 추천', 'new'],
-        ['담당자가 필요한 물품을 직접 선택해 신청', 'inst'],
-        ['판매자에게 기관 수혜자 정보는 공개하지 않음', 'wv'],
+        ['기관 담당자가 후보 물품 중 필요한 것을 직접 선택', 'inst'],
+        ['제공자가 무상 양도에 최종 동의', 'new'],
+        ['제공 의사 등록과 실제 인계를 구분 — 동의 전에는 기부 완료로 처리하지 않음', 'wv'],
       ],
     },
     {
-      key: 'delivery', en: 'DELIVERY', ko: '전달 및 수령 확인', who: '판매자 · 기관 · 월드비전',
-      summary: '판매자의 최종 동의로 기부가 확정되고, 기관의 수령 확인까지 기록합니다.',
+      key: 'delivery', en: 'DELIVERY', ko: '택배 발송·기관 수령', who: '물류 · 기관 · 월드비전',
+      summary: '택배비 후원 재원으로 배송하고, 기관의 수령 확인까지 기록합니다.',
       points: [
-        ['판매자 최종 동의 후 기부 확정', 'new'],
-        ['배송 및 필요시 중간 검수 거점 경유', 'tbd'],
-        ['기관의 수령 확인 및 물품 상태 피드백', 'inst'],
-        ['실제 전달 완료 데이터 기록·관리', 'wv'],
+        ['택배비 후원 재원을 활용해 배송 — 제공자 부담 아님', 'tbd'],
+        ['당근 택배 서비스 연동 가능성 검토', 'tbd'],
+        ['배송 후 기관 담당자가 수령 및 상태 확인', 'inst'],
+        ['실제 전달 완료 건수를 성과로 기록', 'wv'],
       ],
     },
   ];
@@ -237,15 +249,15 @@
     return html`
       <section className="section" id="solution">
         <div className="container">
-          <${SectionHead} num="03" eyebrow="SOLUTION · 서비스 한눈에 보기"
-            title=${html`기부 의사에서 실제 전달까지,<br />하나의 흐름으로.`}
-            lead="네 단계를 선택하면 단계별로 누가 무엇을 하는지, 무엇이 기존 서비스이고 무엇이 새로 필요한지 확인할 수 있습니다." />
+          <${SectionHead} num="04" eyebrow="SOLUTION · 서비스 한눈에 보기"
+            title=${html`수요 등록에서 실제 전달까지,<br />다섯 단계의 흐름으로.`}
+            lead="다섯 단계를 선택하면 단계별로 누가 무엇을 하는지, 무엇이 기존 서비스이고 무엇이 새로 필요한지 확인할 수 있습니다." />
 
           <div className="legend reveal">
             <${Tag} kind="existing" /><${Tag} kind="new" /><${Tag} kind="wv" /><${Tag} kind="inst" /><${Tag} kind="tbd" />
           </div>
 
-          <div className="flow reveal" role="tablist" aria-label="서비스 4단계">
+          <div className="flow reveal" role="tablist" aria-label="서비스 5단계">
             ${STEPS.map((st, i) => html`
               <button key=${st.key} role="tab" aria-selected=${cur === i}
                 className=${'flow-step' + (cur === i ? ' is-active' : '') + (i < cur ? ' is-past' : '')}
@@ -266,9 +278,12 @@
                 <button className="btn btn--sm btn--dark" disabled=${cur === STEPS.length - 1} onClick=${() => setCur(cur + 1)}>다음 단계</button>
               </div>
             </div>
-            <ul className="flow-points">
-              ${s.points.map(([t, k], i) => html`<li key=${i}><span>${t}</span><${Tag} kind=${k} /></li>`)}
-            </ul>
+            <div>
+              <ul className="flow-points">
+                ${s.points.map(([t, k], i) => html`<li key=${i}><span>${t}</span><${Tag} kind=${k} /></li>`)}
+              </ul>
+              ${s.ex ? html`<div className="flow-ex"><span className="mini-title">수요 예시 (실제 데이터 아님)</span><ul className="cond-list">${s.ex.map((e) => html`<li key=${e}>${e}</li>`)}</ul></div>` : null}
+            </div>
           </div>
         </div>
       </section>`;
