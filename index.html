@@ -1,29 +1,559 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>다음 주인 찾기 — 당근 × 월드비전 협업 제안</title>
-  <meta name="description" content="당근에서 거래되지 않은 물품을 AI가 검수 보조하고, 인증된 기관이 직접 선택해 실제 전달까지 이어지는 수요 기반 기부 연결 모델 제안서 (콘셉트 데모)" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-  <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
-  <div id="root">
-    <noscript>이 제안서는 JavaScript가 필요합니다.</noscript>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>LOCAL, BUT IMPACTFUL.</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 굵은 괘선으로 나눈 세로 밴드. 월드비전 오렌지는 마스트헤드·핵심 수치·사례 밴드에 집중, 나머지는 크림과 잉크 */
+:root{
+  --paper:#F7F2E8; --paper-2:#EEE6D5; --ink:#17140F; --ink-2:#51493D; --rule:#17140F; --hair:#C2B7A2;
+  --wv:#FF6B00; --wv-deep:#C94F00; --on-wv:#17140F; --wv-tint:#FFE4CF;
+  --band:#17140F; --band-fg:#F7F2E8;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --voice:"Noto Serif KR","AppleMyungjo",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#14120F; --paper-2:#201C17; --ink:#F2EBDD; --ink-2:#BBB09D; --rule:#F2EBDD; --hair:#4B4438;
+  --wv:#FF7A1A; --wv-deep:#FF9A52; --on-wv:#14120F; --wv-tint:#3A2516;
+  --band:#F2EBDD; --band-fg:#14120F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#14120F; --paper-2:#201C17; --ink:#F2EBDD; --ink-2:#BBB09D; --rule:#F2EBDD; --hair:#4B4438;
+  --wv:#FF7A1A; --wv-deep:#FF9A52; --on-wv:#14120F; --wv-tint:#3A2516;
+  --band:#F2EBDD; --band-fg:#14120F; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.w{max-width:1140px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{border-bottom:3px solid var(--rule)}
+.band>.w{padding-block:clamp(44px,7vw,92px)}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+p,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--wv);outline-offset:3px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.eyebrow b{color:var(--wv-deep);font-weight:500}
+.disp{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:.86}
+.sec-h{font-size:clamp(26px,3.4vw,40px);font-weight:700;line-height:1.3;letter-spacing:-.025em;margin-top:14px}
+.lede{font-size:clamp(16px,1.55vw,18px);color:var(--ink-2);max-width:64ch}
+.src{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);line-height:1.65}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px)}
+
+/* masthead */
+.mast{background:var(--wv);color:var(--on-wv)}
+.mast .w{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-block:12px}
+.mast .eyebrow{color:var(--on-wv)}
+.mast .logo{font-family:var(--display);font-weight:900;font-size:22px;text-transform:uppercase;letter-spacing:.02em}
+.draft{font-family:var(--mono);font-size:11px;letter-spacing:.1em;background:var(--on-wv);color:var(--wv);padding:2px 8px;margin-left:8px}
+nav.toc{border-bottom:1px solid var(--rule)}
+nav.toc .w{display:flex;gap:6px 22px;flex-wrap:wrap;padding-block:10px}
+nav.toc a{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--ink-2)}
+nav.toc a:hover{color:var(--wv-deep)}
+
+/* hero */
+.hero .w{display:grid;gap:clamp(24px,4vw,44px);padding-block:clamp(36px,6vw,72px)}
+.hero h1{font-size:clamp(76px,15.5vw,200px)}
+.hero h1 span{color:var(--wv);display:block}
+.hero-foot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(20px,4vw,56px);align-items:end;border-top:1px solid var(--rule);padding-top:20px}
+.kr{font-size:clamp(20px,2.4vw,28px);font-weight:700;line-height:1.42;letter-spacing:-.025em}
+
+/* why */
+.why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:3px solid var(--rule);margin-top:36px}
+.why div{padding:20px 22px 6px;border-left:1px solid var(--hair);min-width:0}
+.why div:first-child{border-left:0;padding-left:0}
+.why b{font-family:var(--display);font-weight:900;font-size:38px;text-transform:uppercase;line-height:1;display:block;color:var(--wv-deep)}
+.why h3{font-size:20px;font-weight:700;margin:10px 0 6px;letter-spacing:-.02em}
+.why p{font-size:15px;color:var(--ink-2)}
+.note{margin-top:28px;background:var(--wv-tint);padding:16px 20px;font-size:16px;font-weight:500}
+
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:3px solid var(--rule);border-bottom:1px solid var(--rule);margin-top:36px}
+.nums div{padding:18px 14px 16px;border-left:1px solid var(--hair);min-width:0}
+.nums div:first-child{border-left:0;padding-left:0}
+.nums strong{display:block;font-family:var(--display);font-weight:900;font-size:clamp(42px,5.4vw,66px);line-height:.95;font-variant-numeric:tabular-nums}
+.nums .hl{background:var(--wv);color:var(--on-wv);padding-left:16px}
+.nums .hl span{color:var(--on-wv)}
+.nums span{font-size:13px;color:var(--ink-2);line-height:1.5;display:block;margin-top:6px}
+.process{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-top:22px;font-family:var(--mono);font-size:12.5px}
+.process span{border:1px solid var(--ink);padding:3px 10px}
+.process i{font-style:normal;color:var(--wv-deep)}
+
+/* bars */
+.bars{margin-top:8px;display:grid;gap:10px}
+.bar{display:grid;grid-template-columns:7.5em minmax(0,1fr) 5.5em;align-items:center;gap:12px;font-size:14px}
+.bar .track{height:14px;background:var(--paper-2);position:relative}
+.bar .fill{position:absolute;inset:0 auto 0 0;background:var(--ink-2)}
+.bar.me .fill{background:var(--wv)}
+.bar.me{font-weight:700}
+.bar .v{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;font-size:13px}
+
+/* agenda */
+.agenda{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--rule);margin-top:14px}
+.agenda li{padding:12px 12px 12px 0;border-bottom:1px solid var(--hair);font-size:14px;line-height:1.5;min-width:0}
+.agenda li em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--ink-2);display:block}
+.agenda li.me{color:var(--wv-deep);font-weight:700}
+.agenda li.me em{color:var(--wv-deep)}
+
+/* axes */
+.axis{border-top:3px solid var(--rule);padding-top:22px;margin-top:64px}
+.axis-head{display:flex;align-items:baseline;gap:8px 18px;flex-wrap:wrap;margin-bottom:22px}
+.axis-head .disp{font-size:clamp(46px,6.2vw,76px)}
+.axis-head .disp em{font-style:normal;color:var(--wv)}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.2fr);gap:0}
+.col{padding:4px 22px 6px;border-left:1px solid var(--hair);min-width:0}
+.col:first-child{border-left:0;padding-left:0}
+.col>.eyebrow{display:block;margin-bottom:10px}
+.quote{font-family:var(--voice);font-weight:700;font-size:clamp(19px,2vw,23px);line-height:1.5;letter-spacing:-.01em}
+.quote::before{content:"“";color:var(--wv)}
+.quote::after{content:"”";color:var(--wv)}
+.issue{font-size:17px;font-weight:500;line-height:1.55}
+.also{font-size:14px;color:var(--ink-2);margin-top:12px;line-height:1.65}
+.tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;border:1px solid var(--ink-2);color:var(--ink-2);padding:1px 7px;margin-top:12px}
+.tag.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.scene{background:var(--paper-2);padding:18px 20px}
+.scene h4{font-size:15px;font-weight:700;margin-bottom:8px}
+.scene p{font-size:14.5px;line-height:1.7}
+.scene p+p{margin-top:10px}
+.scene .arrow{color:var(--wv-deep);font-weight:700}
+.vq{font-family:var(--voice);font-size:14.5px;border-left:3px solid var(--wv);padding-left:12px;margin-top:12px;line-height:1.7}
+.vq small{display:block;font-family:var(--mono);font-size:11px;color:var(--ink-2);margin-top:4px}
+
+/* case file */
+.case{margin-top:28px;border:2px solid var(--rule);background:var(--paper)}
+.case-top{background:var(--wv);color:var(--on-wv);padding:16px 22px;display:flex;justify-content:space-between;gap:8px 20px;flex-wrap:wrap;align-items:baseline}
+.case-top .eyebrow{color:var(--on-wv)}
+.case-top h3{font-size:clamp(20px,2.4vw,26px);font-weight:700;letter-spacing:-.025em;line-height:1.35;flex-basis:100%}
+.case-body{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:0}
+.case-body>div{padding:20px 22px;min-width:0}
+.case-body>div+div{border-left:1px solid var(--hair)}
+.case h4{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--wv-deep);font-weight:500;margin:0 0 10px}
+.case h4:not(:first-child){margin-top:22px}
+.case p.t{font-size:15px;line-height:1.75}
+.steps{display:grid;gap:0;counter-reset:st}
+.steps li{display:grid;grid-template-columns:2.2em minmax(0,1fr);gap:10px;padding:10px 0;border-top:1px solid var(--hair);font-size:14.5px;line-height:1.6}
+.steps li::before{counter-increment:st;content:counter(st,decimal-leading-zero);font-family:var(--display);font-weight:900;font-size:22px;line-height:1;color:var(--wv-deep)}
+.steps li b{display:block;font-size:15px}
+.steps li span{color:var(--ink-2)}
+.roles li{padding:9px 0;border-top:1px solid var(--hair);font-size:14px;line-height:1.55}
+.roles li b{display:block;font-size:14.5px}
+.roles li span{color:var(--ink-2)}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid var(--hair)}
+.facts div{padding:10px 10px 10px 0;border-bottom:1px solid var(--hair);min-width:0}
+.facts strong{font-family:var(--display);font-weight:900;font-size:32px;line-height:1;display:block;font-variant-numeric:tabular-nums}
+.facts span{font-size:12.5px;color:var(--ink-2);line-height:1.5;display:block;margin-top:4px}
+.give{display:flex;flex-wrap:wrap;gap:6px}
+.give span{font-size:13px;border:1px solid var(--ink);padding:2px 10px;border-radius:999px}
+.give span.plus{background:var(--wv-tint);border-color:var(--wv-deep)}
+.status{font-family:var(--mono);font-size:11px;letter-spacing:.05em;background:var(--on-wv);color:var(--wv);padding:2px 8px}
+.check{font-size:13px;color:var(--ink-2);margin-top:16px;border-top:1px dashed var(--hair);padding-top:12px;line-height:1.6}
+.check b{color:var(--wv-deep)}
+
+/* pull */
+.pull{background:var(--band);color:var(--band-fg)}
+.pull .w{padding-block:clamp(44px,6vw,80px)}
+.pull blockquote{margin:0;font-family:var(--voice);font-weight:700;font-size:clamp(26px,3.8vw,44px);line-height:1.42;letter-spacing:-.02em;max-width:22ch}
+.pull blockquote em{font-style:normal;color:var(--wv)}
+.pull .src{color:var(--band-fg);margin-top:16px}
+.shift{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,32px);margin-top:40px}
+.shift div{border-top:2px solid var(--wv);padding-top:14px}
+.shift .eyebrow{color:var(--wv)}
+.shift h3{font-size:20px;font-weight:700;margin:6px 0;letter-spacing:-.02em}
+.shift p{font-size:14.5px;line-height:1.7}
+
+/* how */
+.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:3px solid var(--rule);margin-top:36px}
+.flow div{padding:18px 16px 6px;border-left:1px solid var(--hair);min-width:0}
+.flow div:first-child{border-left:0;padding-left:0}
+.flow b{display:block;font-family:var(--display);font-weight:900;font-size:32px;text-transform:uppercase;line-height:1;margin-bottom:4px}
+.flow em{font-style:normal;font-size:13px;color:var(--wv-deep);font-weight:700;display:block;margin-bottom:6px}
+.flow span{font-size:14px;color:var(--ink-2);line-height:1.6;display:block}
+.triad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:44px;border:2px solid var(--rule)}
+.triad div{padding:20px 22px;min-width:0}
+.triad div+div{border-left:1px solid var(--hair)}
+.triad div.wvc{background:var(--wv);color:var(--on-wv)}
+.triad .eyebrow{display:block;margin-bottom:8px}
+.triad .wvc .eyebrow{color:var(--on-wv)}
+.triad h3{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
+.triad p{font-size:14.5px;line-height:1.7}
+
+/* cta */
+.cta h2{font-size:clamp(64px,11vw,150px)}
+.cta h2 span{color:var(--wv)}
+.paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,20px);margin-top:36px}
+.paths div{border:1px solid var(--rule);padding:18px 20px}
+.paths b{font-family:var(--display);font-weight:900;font-size:26px;text-transform:uppercase;line-height:1;display:block;color:var(--wv-deep)}
+.paths h3{font-size:17px;font-weight:700;margin:8px 0 4px}
+.paths p{font-size:14px;color:var(--ink-2);line-height:1.65}
+.cta-body{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);margin-top:36px;align-items:start}
+.contact{background:var(--wv);color:var(--on-wv);padding:22px}
+.contact .eyebrow{display:block;margin-bottom:10px;color:var(--on-wv)}
+.contact .addr{font-family:var(--mono);font-size:16px;user-select:all;word-break:break-all;font-weight:500}
+.contact button{margin-top:14px;font:500 14px var(--body);background:var(--on-wv);color:var(--wv);border:0;padding:10px 16px;cursor:pointer}
+.contact .src{color:var(--on-wv);margin-top:8px;min-height:1.6em}
+.sign{font-family:var(--display);font-weight:900;font-size:clamp(24px,3.2vw,36px);text-transform:uppercase;margin-top:44px;border-top:1px solid var(--rule);padding-top:16px}
+.sign span{color:var(--wv)}
+footer{background:var(--paper-2)}
+footer .w{padding-block:26px}
+
+@media (max-width:900px){
+  .cols,.case-body,.two,.hero-foot,.cta-body,.shift,.paths,.triad,.why{grid-template-columns:minmax(0,1fr)}
+  .col{border-left:0;padding:14px 0;border-top:1px solid var(--hair)}
+  .col:first-child{border-top:0;padding-top:0}
+  .case-body>div+div{border-left:0;border-top:1px solid var(--hair)}
+  .triad div+div{border-left:0;border-top:1px solid var(--hair)}
+  .why div{border-left:0;padding-left:0;border-bottom:1px solid var(--hair);padding-bottom:14px}
+  .nums{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nums div{border-left:0;padding-left:0;border-bottom:1px solid var(--hair)}
+  .nums div.hl{grid-column:1/-1;border-bottom:0;padding-left:16px}
+  .agenda{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .flow{grid-template-columns:minmax(0,1fr)}
+  .flow div{border-left:0;padding-left:0;border-bottom:1px solid var(--hair);padding-bottom:14px}
+}
+@media (max-width:480px){.agenda{grid-template-columns:minmax(0,1fr)}.bar{grid-template-columns:6.5em minmax(0,1fr) 5em}}
+@media (prefers-reduced-motion:no-preference){
+  .hero h1 span{animation:rise .7s cubic-bezier(.2,.7,.2,1) both .15s}
+  @keyframes rise{from{transform:translateY(.18em)}to{transform:none}}
+}
+</style>
+
+<header class="mast">
+  <div class="w">
+    <span class="logo">World Vision</span>
+    <span class="eyebrow">Impact Partnership · 2026.11<span class="draft">초안 · 내부 검토용</span></span>
   </div>
+</header>
+<nav class="toc" aria-label="목차">
+  <div class="w">
+    <a href="#why">Why</a><a href="#signal">Signal</a><a href="#economy">01 Economy</a><a href="#community">02 Community</a><a href="#future">03 Future</a><a href="#how">How</a><a href="#contact">Contact</a>
+  </div>
+</nav>
 
-  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/htm@3.1.1/dist/htm.umd.js" crossorigin></script>
+<section class="band hero">
+  <div class="w">
+    <span class="eyebrow"><b>Local Impact</b> · 지역소멸과 기업 파트너십</span>
+    <h1 class="disp">Local,<br>but<span>impactful.</span></h1>
+    <div class="hero-foot">
+      <p class="kr">지역마다 다른 문제,<br>지역마다 필요한 해답.</p>
+      <p class="lede">현장과 학계가 먼저 본 지역의 신호에서 출발합니다. 지역을 가장 잘 아는 지자체, 자원과 전문성을 가진 기업, 현장에서 사업을 설계하고 실행하는 월드비전이 만날 때 지역에 어떤 해답이 생기는지 세 가지 사례로 살펴봅니다.</p>
+    </div>
+  </div>
+</section>
 
-  <script src="js/data.js"></script>
-  <script src="js/ui.js"></script>
-  <script src="js/sections-intro.js"></script>
-  <script src="js/sections-model.js"></script>
-  <script src="js/demo.js"></script>
-  <script src="js/sections-wv.js"></script>
-  <script src="js/sections-ops.js"></script>
-  <script src="js/app.js"></script>
-</body>
+<section class="band" id="why">
+  <div class="w">
+    <span class="eyebrow"><b>Why</b> · 왜 지금 지역소멸인가</span>
+    <h2 class="sec-h">사람이 줄기 전에, 일상이 먼저 비어 갑니다.</h2>
+    <div class="why">
+      <div><b>Work</b><h3>일할 기회가 줄어듭니다</h3><p>지역에서 창업하고 일하며 성장할 경제적 기반이 약해지면, 사람은 머물 이유를 잃습니다.</p></div>
+      <div><b>Gather</b><h3>모일 곳이 사라집니다</h3><p>주민이 만나던 공간과 지역 조직이 문을 닫으면, 공동체를 지탱하던 관계도 느슨해집니다.</p></div>
+      <div><b>Learn</b><h3>배울 기회가 멀어집니다</h3><p>사는 곳에 따라 아이들이 미래를 준비할 교육과 경험의 폭이 달라집니다.</p></div>
+    </div>
+    <p class="note">그래서 지역의 지속가능성은 사람을 데려오는 일만으로 완성되지 않습니다. 사람이 머물고, 관계를 맺고, 미래를 준비할 조건을 함께 만들어야 합니다.</p>
+  </div>
+</section>
+
+<section class="band" id="signal">
+  <div class="w">
+    <span class="eyebrow"><b>Signal</b> · 사랑의열매 2026 기업사회공헌 컨퍼런스</span>
+    <h2 class="sec-h">현장의 목소리와 학계의 분석이 만난 곳</h2>
+    <div class="two" style="margin-top:20px">
+      <p class="lede">사랑의열매는 통계나 정책으로 드러나기 전, 현장 실무자들이 먼저 감지한 변화를 'SIGNAL'로 정리했습니다. 그리고 이를 나눔문화연구소가 학계 전문가와 함께 펴낸 「사회이슈분석 2027」과 나란히 놓고 비교했습니다.</p>
+      <p class="lede">현장은 매일 만나는 사람과 사례에서, 학계는 통계와 제도의 흐름에서 출발했습니다. 그런데도 현장 신호 열 개 중 일곱 개가 학계 이슈와 이어졌습니다. 지역의 문제가 몇몇 현장의 특수한 사정이 아니라 사회 전체의 과제라는 뜻입니다.</p>
+    </div>
+    <div class="nums" role="list">
+      <div role="listitem"><strong>100</strong><span>현장 전문가<br>5개 영역</span></div>
+      <div role="listitem"><strong>55만</strong><span>서술형 21문항<br>응답 원문(자)</span></div>
+      <div role="listitem"><strong>104</strong><span>최종 도출한<br>현장 신호</span></div>
+      <div role="listitem"><strong>89</strong><span>학계 전문가 16명이 꼽은<br>사회이슈 (이머징 46 · 지속 43)</span></div>
+      <div role="listitem" class="hl"><strong>69%</strong><span>학계 이슈와 연결된<br>현장 신호 (72/104)</span></div>
+    </div>
+    <div class="process" aria-label="분석 과정">
+      <span>응답 원문 55만 자</span><i>→</i><span>1차 신호 322개</span><i>→</i><span>영역별 현장 검증 5회</span><i>→</i><span>최종 신호 104개</span><i>→</i><span>8대 SIGNAL 아젠다</span>
+    </div>
+
+    <div class="two" style="margin-top:44px">
+      <div>
+        <span class="eyebrow">영역별 · 학계 이슈와 연결된 현장 신호 비율</span>
+        <div class="bars" style="margin-top:14px">
+          <div class="bar"><span>미래세대</span><span class="track"><span class="fill" style="width:96%"></span></span><span class="v">96% 22/23</span></div>
+          <div class="bar"><span>마음건강</span><span class="track"><span class="fill" style="width:74%"></span></span><span class="v">74% 17/23</span></div>
+          <div class="bar me"><span>인구·지역</span><span class="track"><span class="fill" style="width:68%"></span></span><span class="v">68% 13/19</span></div>
+          <div class="bar"><span>디지털·AI</span><span class="track"><span class="fill" style="width:67%"></span></span><span class="v">67% 12/18</span></div>
+          <div class="bar"><span>기후·안전</span><span class="track"><span class="fill" style="width:38%"></span></span><span class="v">38% 8/21</span></div>
+        </div>
+        <p class="src" style="margin-top:12px">연결 = 직접 연결 또는 부분 연결 · 87건 중 직접 30건, 부분 57건</p>
+      </div>
+      <div>
+        <span class="eyebrow">8대 SIGNAL 아젠다 · 지역과 맞닿은 항목 강조</span>
+        <ol class="agenda">
+          <li class="me"><em>01 · 신호 10</em>사회진입 취약청년</li>
+          <li class="me"><em>02 · 신호 18</em>성장기반 취약 아동·청소년</li>
+          <li><em>03 · 신호 16</em>고립·마음건강 위기군</li>
+          <li><em>04 · 신호 8</em>초고령사회 역할·돌봄 취약 노년</li>
+          <li class="me"><em>05 · 신호 13</em>기후·재난·인구감소 취약 생활권</li>
+          <li class="me"><em>06 · 신호 14</em>AI 전환사회 취약계층</li>
+          <li class="me"><em>07 · 신호 11</em>소진위기 현장인력·조직</li>
+          <li><em>08 · 신호 14</em>전달체계·거버넌스 과제</li>
+        </ol>
+        <p class="src" style="margin-top:10px">강조 표시는 이 페이지의 세 축과 주제상 맞닿은 아젠다입니다(편집 기준).</p>
+      </div>
+    </div>
+    <p class="src" style="margin-top:28px">자료: 사랑의열매 「SIGNAL 브리핑」, 임팩트리서치랩 「기업 실무자를 위한 SIGNAL 사용법」, 「SIGNAL × 사회이슈분석 2027」 (2026.10.29 발표)</p>
+
+    <!-- 01 ECONOMY -->
+    <article class="axis" id="economy">
+      <div class="axis-head"><span class="disp"><em>01</em> Economy</span><span class="kr">유입 이후, 정착의 공백</span></div>
+      <div class="cols">
+        <div class="col">
+          <span class="eyebrow">현장 신호 · 인구·지역</span>
+          <p class="quote">쏟아지는 청년유입 사업, 정착은 개인의 몫</p>
+        </div>
+        <div class="col">
+          <span class="eyebrow">학계 이슈 · 지역사회 이머징</span>
+          <p class="issue">정서적·지지적 관계 단절 : 정착 네트워크 지원</p>
+          <span class="tag on">공식 매칭 · 직접 일치</span>
+        </div>
+        <div class="col">
+          <div class="scene">
+            <h4>현장이 본 장면</h4>
+            <p>지역 정착·창업 청년을 위한 유입 단계 지원은 늘었지만, 교육·의료 인프라와 관계망이 부족해 정착 단계에서 도시로 다시 떠납니다. 지역 안에서 긴 생애 설계를 하기 어렵습니다.</p>
+            <p><span class="arrow">→ SIGNAL의 제안</span> 사업장이 있는 지역의 청년에게 다양한 직무 경험 기회를 열면, 현장이 꼽는 핵심 과제인 '취업으로 이어지는 통로'가 될 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-top">
+          <span class="eyebrow">Case 01 · Local economy</span>
+          <span class="status">제안 단계 · 진행 여부 확인 필요</span>
+          <h3>지역의 가능성을 시장과 연결합니다.<br>농림축산식품부 × 현대백화점그룹 × 월드비전 로컬푸드 창업 지원</h3>
+        </div>
+        <div class="case-body">
+          <div>
+            <h4>Local issue</h4>
+            <p class="t">농촌 인구의 고령화와 지역 격차 속에서 농촌 경제의 활력은 약해지고 있습니다. 지역에 좋은 농산물과 아이디어가 있어도 이를 상품으로 만들고 시장에 내놓을 길은 좁습니다. 지역에서 창업한 팀이 가장 먼저 부딪히는 벽은 '팔 곳'입니다.</p>
+            <h4>Partnership · 3개년 순환 구조</h4>
+            <ol class="steps">
+              <li><div><b>로컬푸드 활용 제품 콘테스트</b><span>지역 농산물과 콘텐츠로 상품을 기획·개발 중인 푸드 스타트업, 소상공인, 로컬 크리에이터 발굴. 농림축산식품부 주관</span></div></li>
+              <li><div><b>제품 개발 인큐베이팅</b><span>상위 5개 팀이 기획 → 시제품 → 완제품까지. 현대그린푸드 임직원과 푸드테크 기업이 멘토로 참여하고 단계별 코칭 지원</span></div></li>
+              <li><div><b>팝업스토어와 온라인 기획전</b><span>현대백화점 팝업스토어에서 실제 고객 반응을 확인하고, 베스트 상품은 현대몰 기획전으로 연결</span></div></li>
+              <li><div><b>연계 사업으로 확장</b><span>해외 판로 개척, 식품 제조·가공 혁신기업 지원 등 농림축산식품부 연계 사업과의 시너지 검토</span></div></li>
+            </ol>
+          </div>
+          <div>
+            <h4>세 주체의 역할</h4>
+            <ul class="roles">
+              <li><b>농림축산식품부</b><span>창업 콘테스트 주관, 정책사업 연계</span></li>
+              <li><b>현대백화점그룹</b><span>재원, 유통 채널, 관계사 멘토링·홍보</span></li>
+              <li><b>월드비전</b><span>사업 기획·운영 총괄, 성과 관리, 지자체·청년정책 연계</span></li>
+            </ul>
+            <h4>기업이 연결하는 자원</h4>
+            <div class="give"><span>유통망</span><span>판로</span><span>상품개발</span><span>임직원 멘토링</span></div>
+            <h4>측정할 변화</h4>
+            <ul class="roles">
+              <li><span>청년 일자리 창출 수 · 창업 업체 매출 · 그룹 채널 연계 건수 · 외부 자원 연계 건수</span></li>
+            </ul>
+            <p class="check"><b>확인 필요</b> 2025년 11월 제안서 기준입니다. 확정·진행 여부, 기업명·로고 노출 승인.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 02 COMMUNITY -->
+    <article class="axis" id="community">
+      <div class="axis-head"><span class="disp"><em>02</em> Community</span><span class="kr">공간과 관계의 약화</span></div>
+      <div class="cols">
+        <div class="col">
+          <span class="eyebrow">현장 신호 · 인구·지역</span>
+          <p class="quote">‘새로운 조직 발굴’에 밀려 붕괴하는 지역기반 조직</p>
+          <p class="also">같은 이슈에 함께 연결된 신호<br>“관계에는 투자하지 않는 사회”<br>“흩어진 자원을 하나의 경험으로 엮을 운영자가 없다”<br>“지역을 지키는 사람이 먼저 소진된다”</p>
+        </div>
+        <div class="col">
+          <span class="eyebrow">학계 이슈 · 지역사회 지속</span>
+          <p class="issue">로컬 비영리 공익활동 위기</p>
+          <span class="tag on">공식 매칭 · 직접 일치</span>
+          <p class="also">수도권 중심의 자원 독점, 신규 진입이 어려운 행정 통제, 낮은 처우와 임금 구조가 맞물린 위기</p>
+        </div>
+        <div class="col">
+          <div class="scene">
+            <h4>현장이 본 장면</h4>
+            <p>새 조직을 찾고 측정하기 쉬운 곳에 자원이 몰리는 동안, 지역을 오래 지켜 온 조직과 공간, 사람 사이의 관계는 투자 대상에서 밀려납니다.</p>
+            <p><span class="arrow">→ 분석의 제언</span> 문제를 대신 해결하기보다, 지역이 스스로 해결할 수 있는 역량(인력·인프라·조직·관계자본)에 투자해야 합니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-top">
+          <span class="eyebrow">Case 02 · Local community</span>
+          <span class="status">사업 내용·파트너 확인 필요</span>
+          <h3>지역에 이미 있는 공간을 다시 봅니다.<br>안성시 일죽면 목욕탕 소셜 리브랜딩</h3>
+        </div>
+        <div class="case-body">
+          <div>
+            <h4>Local issue</h4>
+            <p class="t">지역의 공동체는 사람이 모이는 장소에서 유지됩니다. 그런 장소가 문을 닫으면 이웃 사이의 연결도 함께 약해집니다. 현장 전문가들이 "관계에는 투자하지 않는 사회"라고 말한 지점입니다.</p>
+            <h4>Partnership · 검토 중인 방향</h4>
+            <ol class="steps">
+              <li><div><b>공간</b><span>지역에 있는 목욕탕 공간의 새로운 활용 가능성 검토</span></div></li>
+              <li><div><b>사람</b><span>주민이 함께 참여하고 머물 수 있는 공간 구성</span></div></li>
+              <li><div><b>브랜드</b><span>일죽의 정체성을 담은 리브랜딩</span></div></li>
+              <li><div><b>협력</b><span>안성시와 함께하는 지역 맞춤형 프로젝트로, 기업의 디자인·공간기획 역량 연결</span></div></li>
+            </ol>
+          </div>
+          <div>
+            <h4>세 주체의 역할</h4>
+            <ul class="roles">
+              <li><b>안성시</b><span>지역 이해, 행정 협력 <i>(확인 필요)</i></span></li>
+              <li><b>기업 파트너</b><span>디자인·브랜딩·공간기획 <i>(확인 필요)</i></span></li>
+              <li><b>월드비전</b><span>지역 수요 발굴, 사업 기획, 파트너 조율</span></li>
+            </ul>
+            <h4>기업이 연결할 수 있는 자원</h4>
+            <div class="give"><span>공간 디자인</span><span>브랜딩</span><span>운영 컨설팅</span><span>임직원 참여</span></div>
+            <p class="check"><b>확인 필요</b> 진행 단계, 참여 기업, 공간의 실제 용도와 운영 주체. 확인 전에는 목욕탕의 연혁이나 활용 계획을 적지 않았습니다.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 03 FUTURE -->
+    <article class="axis" id="future">
+      <div class="axis-head"><span class="disp"><em>03</em> Future</span><span class="kr">교육과 디지털 역량의 격차</span></div>
+      <div class="cols">
+        <div class="col">
+          <span class="eyebrow">현장 신호 · 디지털·AI</span>
+          <p class="quote">학교를 벗어나면 닿지 않는 AI 교육</p>
+          <p class="also">디지털 영역 직접 일치 신호의 공통 문장<br>“가장 필요한 사람에게 가장 늦게 닿는 기술”</p>
+        </div>
+        <div class="col">
+          <span class="eyebrow">학계 이슈 · 청소년 이머징</span>
+          <p class="issue">AI 대전환기, 청소년의 핵심 역량 강화</p>
+          <span class="tag on">공식 매칭 · 직접 일치</span>
+          <p class="also">함께 볼 이슈: 인구감소지역 청소년 성장 지원</p>
+          <span class="tag">주제 연관</span>
+        </div>
+        <div class="col">
+          <div class="scene">
+            <h4>현장이 본 장면</h4>
+            <p>AI 교육은 대부분 학교를 통로로 운영됩니다. 학교라는 전달 체계 밖에 있거나, 학교 밖 학습 기회가 드문 지역의 아이들에게는 닿기 어렵습니다.</p>
+            <p class="vq">탈학교 청소년, 장기입원 아동·청소년, 보호관찰 청소년 등은 학교라는 교육 전달 체계 밖에 있기 때문에 AI 리터러시 교육이 도달하기 어렵습니다.<small>Field Voice 100 · 디지털·AI 영역</small></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-top">
+          <span class="eyebrow">Case 03 · Local future</span>
+          <span class="status">공공재원 신청 사업 · 선정 여부 확인 필요</span>
+          <h3>AI 시대의 기회가 지역에 따라 달라지지 않도록.<br>월드비전 드림브릿지 · 전남 진도군 · 경남 통영시</h3>
+        </div>
+        <div class="case-body">
+          <div>
+            <h4>Local issue</h4>
+            <div class="facts">
+              <div><strong>256</strong><span>진도군을 이루는 섬<br>(유인도 45개)</span></div>
+              <div><strong>0</strong><span>진도군 관내 등록된<br>진로체험 전용 인프라</span></div>
+              <div><strong>D</strong><span>진도군 교통약자 교통안전지수<br>(80개 동급 지자체 중 64위)</span></div>
+              <div><strong>0.76</strong><span>통영시 합계출산율<br>(2023 인구감소 관심지역)</span></div>
+            </div>
+            <p class="src" style="margin-top:8px">자료: 드림브릿지 사업계획서 (KOSIS, 여성가족부, 도로교통공단 인용)</p>
+            <h4>Partnership · 두 가지 프로그램</h4>
+            <ol class="steps">
+              <li><div><b>AI 진로체험 '꿈제작소'</b><span>진로 적성 탐색 → AI 윤리 교육과 활용 실습 → 나만의 꿈 동화책 제작과 발표</span></div></li>
+              <li><div><b>AI 교통안전 '안전체험소'</b><span>XR 실감형 교통안전 교육 → AI 보행 안전 위험 평가와 개인별 결과 보고서 → 안전용품 지급</span></div></li>
+            </ol>
+          </div>
+          <div>
+            <h4>지역에 맞춘 운영 방식</h4>
+            <ul class="roles">
+              <li><b>진도군 · 학교 중심</b><span>교육지원청 추천으로 학교를 선정해 찾아가는 프로그램 운영</span></li>
+              <li><b>통영시 · 사회복지시설 중심</b><span>지역 사회복지시설을 '디지털 돌봄 거점'으로 활용</span></li>
+              <li><b>대상</b><span>만 9~18세 아동·청소년 80명, 섬 지역 거주 아동 우선 선발</span></li>
+              <li><b>월드비전</b><span>광주전남·경남울산사업본부 네트워크로 교육청·학교·시설 연계</span></li>
+            </ul>
+            <h4>기업이 함께한다면</h4>
+            <div class="give"><span class="plus">AI 교육 콘텐츠</span><span class="plus">디지털 기기</span><span class="plus">기술 지원</span><span class="plus">임직원 멘토링</span></div>
+            <p class="also">공공재원으로 설계한 사업에 기업의 기술과 콘텐츠가 더해지면, 더 많은 섬과 산간 지역으로 넓힐 수 있습니다.</p>
+            <p class="check"><b>확인 필요</b> 복권기금 배분 신청 자료 기준(2026.6.15~12.31). 현재 기업 참여 사례가 아닌 확장 제안 모델로 표기했습니다.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="pull">
+  <div class="w">
+    <blockquote>기업 사회공헌의 다음 질문은 ‘무엇을’이 아니라 <em>‘어떻게’</em>입니다.</blockquote>
+    <p class="src">— 「SIGNAL × 사회이슈분석 2027」 결론 · 사회공헌의 문법이 바뀔 때</p>
+    <div class="shift">
+      <div><span class="eyebrow">전환 1 · 맥락</span><h3>대상에서 삶의 맥락으로</h3><p>대상별 사업을 삶의 맥락과 전환기까지 잇는 연속 지원으로 설계합니다.</p></div>
+      <div><span class="eyebrow">전환 2 · 발굴</span><h3>신청에서 찾아가는 예방으로</h3><p>신청을 기다리지 않고 위기가 커지기 전에 먼저 닿습니다.</p></div>
+      <div><span class="eyebrow">전환 3 · 기반</span><h3>사업에서 기반으로</h3><p>새로운 사업만 쫓기보다 사람·조직·책임 구조의 기반을 만듭니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="how">
+  <div class="w">
+    <span class="eyebrow"><b>How</b> · 지자체와 기업 사이에서 월드비전이 하는 일</span>
+    <h2 class="sec-h">지역을 아는 지자체, 자원을 가진 기업.<br>둘을 하나의 프로젝트로 묶습니다.</h2>
+    <div class="triad">
+      <div><span class="eyebrow">지자체 · 중앙부처</span><h3>지역에 대한 이해</h3><p>지역의 사정을 가장 잘 알고, 행정과 정책의 기반을 갖고 있습니다.</p></div>
+      <div class="wvc"><span class="eyebrow">World Vision</span><h3>발굴하고 잇고 실행합니다</h3><p>현장 네트워크로 문제를 찾고, 두 주체의 자원을 지역 맞춤형 사업으로 설계해 운영합니다.</p></div>
+      <div><span class="eyebrow">기업</span><h3>자원과 전문성</h3><p>유통망, 기술, 디자인, 임직원 등 지역에 없는 역량을 갖고 있습니다.</p></div>
+    </div>
+    <div class="flow">
+      <div><b>Find</b><em>발굴</em><span>지역 현장 네트워크로 구체적인 문제와 수요를 찾습니다.</span></div>
+      <div><b>Connect</b><em>연결</em><span>중앙부처·지자체와 협력 구조를 만들고 기업의 자원을 맞춥니다.</span></div>
+      <div><b>Design</b><em>기획</em><span>지역 특성에 맞는 사회공헌 사업을 설계합니다.</span></div>
+      <div><b>Run</b><em>실행·조정</em><span>현장에서 사업을 운영하고 파트너 사이를 조율합니다.</span></div>
+      <div><b>Scale</b><em>확장 검토</em><span>다른 지역으로 이어질 수 있는지 살핍니다.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band cta" id="contact">
+  <div class="w">
+    <h2 class="disp">Have a local<br>impact <span>idea?</span></h2>
+    <p class="kr" style="margin-top:24px">귀사가 관심 있는 지역에는 어떤 변화가 필요할까요?</p>
+    <div class="paths">
+      <div><b>Place</b><h3>지역에서 시작하기</h3><p>사업장이 있는 지역, 관계를 맺고 싶은 지역을 정해 오세요. 그 지역의 문제를 함께 찾습니다.</p></div>
+      <div><b>Problem</b><h3>문제에서 시작하기</h3><p>청년 정착, 공동체 회복, 교육 격차처럼 풀고 싶은 문제를 가지고 오세요. 맞는 지역을 함께 찾습니다.</p></div>
+      <div><b>Resource</b><h3>자원에서 시작하기</h3><p>유통망, 기술, 디자인, 임직원처럼 귀사가 가진 자원이 어디에 쓰일 수 있을지 함께 그려 봅니다.</p></div>
+    </div>
+    <div class="cta-body">
+      <p class="lede">중앙부처·지방자치단체와의 협력부터 지역 맞춤형 프로젝트의 기획과 실행까지. 월드비전이 기업의 자원과 지역의 필요를 연결하겠습니다. 다음 LOCAL, BUT IMPACTFUL.은 귀사가 시작한 지역의 이야기일 수 있습니다.</p>
+      <div class="contact">
+        <span class="eyebrow">기업 파트너십 문의</span>
+        <p class="addr" id="addr">[담당자 이메일]</p>
+        <button type="button" id="copy">이메일 복사</button>
+        <p class="src" id="copied" aria-live="polite"></p>
+      </div>
+    </div>
+    <p class="sign">Let's make it happen with <span>World Vision.</span></p>
+  </div>
+</section>
+
+<footer>
+  <div class="w">
+    <p class="src">SIGNAL 수치·인용: 사랑의열매 2026 기업사회공헌 컨퍼런스 발표자료(2026.10.29). '공식 매칭'은 「SIGNAL × 사회이슈분석 2027」 직접 일치 연결지도 기준입니다. 사례 내용은 제안서·사업계획서 기준이며 진행 상태는 확인 중입니다.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('copy').addEventListener('click',function(){
+  var el=document.getElementById('addr'), out=document.getElementById('copied');
+  function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);out.textContent='선택했어요. Ctrl+C로 복사하세요.'}
+  try{navigator.clipboard.writeText(el.textContent).then(function(){out.textContent='복사했어요.'},sel)}catch(e){sel()}
+});
+</script>
+
 </html>
