@@ -190,6 +190,48 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .matrix tbody th{font-family:var(--display);font-weight:900;font-size:22px;text-transform:uppercase;white-space:nowrap;color:var(--wv-deep);width:9em}
 .matrix tbody th small{display:block;font-family:var(--body);font-size:12px;color:var(--ink-2);text-transform:none;font-weight:500}
 
+/* system */
+.sys-h{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:.88;font-size:clamp(54px,9vw,116px);margin-top:14px}
+.sys-h span{color:var(--wv)}
+.gap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);margin-top:36px;align-items:start}
+.timeline{border:2px solid var(--rule);padding:20px 22px}
+.tl-row{display:grid;grid-template-columns:7em minmax(0,1fr);gap:12px;align-items:center;margin-top:12px;font-size:13.5px}
+.tl-row:first-of-type{margin-top:14px}
+.tl-bar{height:16px;position:relative;background:var(--paper-2)}
+.tl-bar i{position:absolute;top:0;bottom:0;background:var(--ink-2)}
+.tl-bar i.wv{background:var(--wv)}
+.tl-legend{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--ink-2);margin-top:8px;padding-left:calc(7em + 12px)}
+.vs{margin-top:44px;overflow-x:auto}
+.vs table{border-collapse:collapse;width:100%;min-width:640px;font-size:15px;line-height:1.6}
+.vs th,.vs td{text-align:left;vertical-align:top;padding:13px 16px;border-top:1px solid var(--hair)}
+.vs thead th{border-top:3px solid var(--rule);font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--ink-2)}
+.vs thead th.wv{background:var(--wv);color:var(--on-wv)}
+.vs tbody th{font-size:13px;color:var(--ink-2);font-weight:500;width:8em}
+.vs td.wv{background:var(--wv-tint);font-weight:700}
+.stay{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:44px;border-top:3px solid var(--rule)}
+.stay div{padding:18px 20px 8px;border-left:1px solid var(--hair);min-width:0}
+.stay div:first-child{border-left:0;padding-left:0}
+.stay b{font-family:var(--display);font-weight:900;font-size:30px;text-transform:uppercase;display:block;line-height:1;color:var(--wv-deep)}
+.stay h3{font-size:18px;font-weight:700;margin:8px 0 6px}
+.stay p{font-size:14.5px;color:var(--ink-2);line-height:1.7}
+.stay .ev{display:block;margin-top:10px;font-family:var(--mono);font-size:11.5px;color:var(--ink);background:var(--paper-2);padding:6px 8px;line-height:1.55}
+.mofe{margin-top:44px;background:var(--band);color:var(--band-fg);padding:clamp(22px,3vw,32px)}
+.mofe .eyebrow{color:var(--band-fg)}
+.mofe .eyebrow b{color:var(--wv)}
+.mofe p.big{font-size:clamp(20px,2.4vw,27px);font-weight:700;line-height:1.5;letter-spacing:-.02em;margin-top:10px}
+.mofe p.big em{font-style:normal;color:var(--wv)}
+.opens{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:22px;border-top:1px solid var(--band-fg)}
+.opens div{padding:14px 14px 4px;border-left:1px solid var(--band-fg);min-width:0}
+.opens div:first-child{border-left:0;padding-left:0}
+.opens b{font-family:var(--display);font-weight:900;font-size:22px;text-transform:uppercase;display:block;line-height:1.05;color:var(--wv)}
+.opens span{font-size:13.5px;display:block;margin-top:6px;line-height:1.6}
+@media (max-width:900px){
+  .gap,.stay{grid-template-columns:minmax(0,1fr)}
+  .stay div{border-left:0;padding-left:0;border-bottom:1px solid var(--hair);padding-bottom:14px}
+  .opens{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .opens div{border-left:0;padding-left:0;border-bottom:1px solid var(--band-fg);padding-right:10px}
+}
+
 /* pull */
 .pull{background:var(--band);color:var(--band-fg)}
 .pull .w{padding-block:clamp(44px,6vw,80px)}
@@ -270,7 +312,7 @@ footer .w{padding-block:26px;display:grid;gap:6px}
 </header>
 <nav class="toc" aria-label="목차">
   <div class="w">
-    <a href="#why">Why</a><a href="#signal">Signal</a><a href="#backbone" class="wvl">Backbone</a><a href="#economy">01 Economy</a><a href="#community">02 Community</a><a href="#future">03 Future</a><a href="#corporate">For corporate</a><a href="#contact">Contact</a>
+    <a href="#why">Why</a><a href="#signal">Signal</a><a href="#system" class="wvl">System</a><a href="#backbone" class="wvl">Backbone</a><a href="#economy">01 Economy</a><a href="#community">02 Community</a><a href="#future">03 Future</a><a href="#corporate">For corporate</a><a href="#contact">Contact</a>
   </div>
 </nav>
 
@@ -280,7 +322,7 @@ footer .w{padding-block:26px;display:grid;gap:6px}
     <h1 class="disp">Local,<br>but<span>impactful.</span></h1>
     <div class="hero-foot">
       <p class="kr">문제와 기회를 연결하면,<br>지역의 미래가 됩니다.</p>
-      <p class="lede">지역소멸을 풀 힘은 이미 있습니다. 정책은 정부에, 기술과 유통은 기업에, 해법은 현장에, 지속할 힘은 주민에게 있습니다. 다만 흩어져 있을 뿐입니다. 월드비전은 이 자원들이 하나의 프로젝트로 움직이도록 처음부터 끝까지 잇는 <strong>백본(Backbone)</strong> 역할을 합니다.</p>
+      <p class="lede">지역소멸을 풀 힘은 이미 있습니다. 정책은 정부에, 기술과 유통은 기업에, 해법은 현장에, 지속할 힘은 주민에게 있습니다. 다만 흩어져 있을 뿐입니다. 월드비전은 이 자원들이 하나의 프로젝트로 움직이도록 처음부터 끝까지 잇는 <strong>백본(Backbone)</strong> 역할을 합니다. 그리고 재원이 떠난 뒤에도 지역이 스스로 돌아가는 <strong>시스템</strong>을 남깁니다.</p>
     </div>
   </div>
 </section>
@@ -339,6 +381,65 @@ footer .w{padding-block:26px;display:grid;gap:6px}
         <span class="tag on">공식 매칭</span>
         <p class="also">함께 볼 이슈 “인구감소지역 청소년 성장 지원” <span class="tag" style="margin-top:4px">주제 연관</span></p>
       </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="system">
+  <div class="w">
+    <span class="eyebrow"><b>Sustainability</b> · 중앙정부가 가장 먼저 묻는 것</span>
+    <h2 class="sys-h">Not a project.<br><span>A system.</span></h2>
+    <p class="kr" style="margin-top:22px">사업이 끝난 뒤에도, 지역은 계속 돌아가야 합니다.</p>
+
+    <div class="gap">
+      <div>
+        <p class="lede">지역소멸을 풀기 위한 정부의 사업과 사회적기업의 노력은 이미 많습니다. 그런데 사업 기간이 끝나면 지원도, 사람도 함께 빠져나갑니다. 지역에 남아야 할 청년이 사업과 함께 떠나고, 수많은 사업이 그때뿐인 단발성으로 끝납니다.</p>
+        <p class="lede" style="margin-top:14px">그래서 중앙정부의 핵심 질문은 '무슨 사업을 할 것인가'보다 <strong>'재원이 나간 뒤에도 지역이 스스로 돌아가는가'</strong>입니다. 현장도 같은 말을 하고 있습니다.</p>
+        <p class="pq">위기는 긴데, 지원은 너무 짧다.</p>
+        <p class="src" style="margin-top:6px">사랑의열매 SIGNAL 현장 검증 · 다섯 영역에서 같은 말</p>
+      </div>
+      <div class="timeline" role="img" aria-label="사업 단위 지원은 사업 기간에만 있고, 시스템 방식은 재원이 빠진 뒤에도 지역 거버넌스가 이어짐을 비교한 도식">
+        <span class="eyebrow">사업이 끝난 뒤, 지역에 무엇이 남는가</span>
+        <div class="tl-row"><span>지역의 과제</span><span class="tl-bar"><i style="left:0;right:0"></i></span></div>
+        <div class="tl-row"><span>단발성 사업</span><span class="tl-bar"><i style="left:12%;width:22%"></i></span></div>
+        <div class="tl-row"><span>외부 재원</span><span class="tl-bar"><i class="wv" style="left:12%;width:40%;opacity:.55"></i></span></div>
+        <div class="tl-row"><span><b>지역 거버넌스</b></span><span class="tl-bar"><i class="wv" style="left:12%;right:0"></i></span></div>
+        <div class="tl-legend"><span>사업 시작</span><span>재원 종료</span><span>그 이후</span></div>
+        <p class="src" style="margin-top:14px">월드비전은 재원이 들어오는 순간부터, 재원이 빠진 뒤에도 남을 주체와 구조를 함께 만듭니다.</p>
+      </div>
+    </div>
+
+    <div class="vs" role="region" aria-label="프로젝트 방식과 시스템 방식 비교" tabindex="0">
+      <table>
+        <thead><tr><th></th><th>기존 프로젝트 방식</th><th class="wv">월드비전 시스템 방식</th></tr></thead>
+        <tbody>
+          <tr><th>시간의 단위</th><td>사업 기간 (1년 단위, 예산이 있을 때만)</td><td class="wv">지역의 시간 (재원 이후까지 설계)</td></tr>
+          <tr><th>중심 주체</th><td>사업을 수행하는 외부 기관</td><td class="wv">지역에 남는 지자체·주민·지역 조직</td></tr>
+          <tr><th>청년</th><td>사업 참여자로 들어왔다 떠남</td><td class="wv">지역 거버넌스 안에서 역할을 갖고 머묾</td></tr>
+          <tr><th>남는 것</th><td>결과 보고서와 참여 인원</td><td class="wv">계속 작동하는 거버넌스와 소통 구조</td></tr>
+          <tr><th>끝나는 방식</th><td>재원 종료와 함께 중단</td><td class="wv">주민과 지방정부가 이어서 운영</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:22px;font-weight:700;margin-top:52px;letter-spacing:-.02em">월드비전의 차별성 · 남는 사람들로 거버넌스를 만듭니다</h3>
+    <p class="lede" style="margin-top:10px">외부 재원과 사업 수행기관은 언젠가 떠납니다. 그러나 지자체와 지역 주민, 지역 조직은 남습니다. 월드비전은 처음부터 이들과 거버넌스와 소통 구조를 만들어, 재원이 나간 뒤에도 사업이 계속 돌아가게 하는 데 집중합니다.</p>
+    <div class="stay">
+      <div><b>Local gov.</b><h3>지자체가 이어받습니다</h3><p>캠페인으로 끝나지 않고, 지방정부가 반복해서 쓰는 정책 자산으로 남깁니다.</p><span class="ev">부안 한평生 갯벌 → 지방정부가 반복 활용하는 협력 모델</span></div>
+      <div><b>Residents</b><h3>주민이 운영합니다</h3><p>주민을 수혜자가 아니라 지역을 돌보는 주체로 세웁니다.</p><span class="ev">일죽 목욕탕 → 주민 건강리더 '일죽동친' 27명, 위험 징후 38건 발견</span></div>
+      <div><b>Long-term</b><h3>떠날 수 있게 설계합니다</h3><p>국제 지역개발 15~20년의 원칙대로, 주민과 지방정부가 스스로 운영할 때를 자립의 기준으로 봅니다.</p><span class="ev">“잘 가요, 월드비전” · 6-Step의 마지막 단계 Sustain</span></div>
+    </div>
+
+    <div class="mofe">
+      <span class="eyebrow"><b>Now developing</b> · 중앙부처와 함께</span>
+      <p class="big">월드비전은 <em>행정안전부·농림축산식품부</em>와 다년간의 협의를 통해, 재원이 끝난 뒤에도 지역에 청년과 거버넌스가 남는 지역소멸 대응 사업모델을 개발하고 있습니다.</p>
+      <div class="opens">
+        <div><b>Open the problem</b><span>현장의 문제와 데이터를 민간과 공유</span></div>
+        <div><b>Open the asset</b><span>공간·시설·지역 자산을 협력 자원으로</span></div>
+        <div><b>Open the process</b><span>완성된 용역보다 초기 기획부터 공동 설계</span></div>
+        <div><b>Scale what works</b><span>검증된 모델을 정책·예산·제도로 확산</span></div>
+      </div>
+      <p class="src" style="color:var(--band-fg);margin-top:16px">정부와 지방정부가 문을 열면, 민간의 솔루션이 들어옵니다. 해결책을 모두 가지고 있을 필요는 없습니다. 좋은 문제를 열어 주십시오.</p>
     </div>
   </div>
 </section>
