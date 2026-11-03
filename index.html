@@ -190,6 +190,22 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .matrix tbody th{font-family:var(--display);font-weight:900;font-size:22px;text-transform:uppercase;white-space:nowrap;color:var(--wv-deep);width:9em}
 .matrix tbody th small{display:block;font-family:var(--body);font-size:12px;color:var(--ink-2);text-transform:none;font-weight:500}
 
+/* why world vision */
+.bbh{display:flex;align-items:baseline;gap:12px;font-family:var(--display);font-weight:900;font-size:clamp(30px,3.6vw,44px);text-transform:uppercase;line-height:1;margin-top:64px;padding-top:18px;border-top:3px solid var(--on-wv)}
+.bbh span{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.1em}
+.why-wv .wvk{font-style:normal;font-weight:700;font-size:15px;display:block;margin-bottom:6px}
+.proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,20px);margin-top:24px}
+.proof article{background:var(--paper);color:var(--ink);padding:20px 20px 0;display:flex;flex-direction:column;min-width:0}
+.proof h4{font-size:19px;font-weight:700;letter-spacing:-.02em;line-height:1.35;margin:6px 0 12px}
+.pmap li{display:grid;grid-template-columns:minmax(0,1fr);padding:8px 0;border-top:1px solid var(--hair);font-size:13.5px;line-height:1.5}
+.pmap li b{font-size:14px}
+.pmap li span{color:var(--ink-2)}
+.pmap li.me b{color:var(--wv-deep)}
+.res{margin:auto -20px 0;padding:14px 20px 16px;background:var(--band);color:var(--band-fg);margin-top:16px}
+.res strong{font-family:var(--display);font-weight:900;font-size:30px;line-height:1;display:block;color:var(--wv)}
+.res span{font-size:12.5px;line-height:1.55;display:block;margin-top:6px}
+@media (max-width:900px){.proof{grid-template-columns:minmax(0,1fr)}}
+
 /* hero keywords */
 .kw{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:3px solid var(--rule)}
 .kw a{display:block;text-decoration:none;padding:16px 18px 14px;border-left:1px solid var(--hair);min-width:0}
@@ -372,7 +388,7 @@ footer .w{padding-block:26px;display:grid;gap:6px}
 </header>
 <nav class="toc" aria-label="목차">
   <div class="w">
-    <a href="#" class="back ph" title="뉴스레터 URL 입력 예정" aria-disabled="true" data-newsletter>← 뉴스레터로</a><a href="#why">Why</a><a href="#signal">Signal</a><a href="#system" class="wvl">System</a><a href="#backbone" class="wvl">Backbone</a><a href="#economy">01 Economy</a><a href="#community">02 Community</a><a href="#future">03 Future</a><a href="#corporate">For corporate</a><a href="#contact">Contact</a>
+    <a href="#" class="back ph" title="뉴스레터 URL 입력 예정" aria-disabled="true" data-newsletter>← 뉴스레터로</a><a href="#why">Why</a><a href="#signal">Signal</a><a href="#system" class="wvl">System</a><a href="#backbone" class="wvl">Why WV</a><a href="#economy">01 Economy</a><a href="#community">02 Community</a><a href="#future">03 Future</a><a href="#corporate">For corporate</a><a href="#contact">Contact</a>
   </div>
 </nav>
 
@@ -511,35 +527,82 @@ footer .w{padding-block:26px;display:grid;gap:6px}
 
 <section class="bb" id="backbone">
   <div class="w">
-    <span class="eyebrow"><b>World Vision's role</b> · Bridge &amp; Backbone</span>
-    <h2 class="disp">Bridge &amp;<br>Backbone.</h2>
-    <p class="kr" style="margin-top:22px">문제를 해결할 힘은 이미 존재합니다.<br>다만 서로 다른 곳에 흩어져 있을 뿐입니다.</p>
+    <span class="eyebrow"><b>Section 04</b> · Why World Vision?</span>
+    <h2 class="disp">Why World<br>Vision?</h2>
+    <p class="kr" style="margin-top:22px">지역의 변화를 함께 만드는 월드비전의 역량</p>
+    <p class="lede" style="margin-top:12px">기업이 월드비전과 함께할 때 활용할 수 있는 것은 네 가지입니다. 흩어진 주체를 잇는 역할, 문제를 사업으로 바꾸는 6단계 방법, 전국 현장 네트워크와 협력 경험, 그리고 이를 증명하는 실제 사례입니다.</p>
+
+    <h3 class="bbh"><span>01</span>Bridge &amp; Backbone</h3>
+    <p class="kr" style="margin-top:10px">문제를 해결할 힘은 이미 존재합니다.<br>다만 서로 다른 곳에 흩어져 있을 뿐입니다.</p>
     <div class="actors">
       <div><b>Government</b><em>정부 · 지방정부</em><span>정책 · 제도 · 공공자원 · 지역정보</span></div>
       <div><b>Corporate</b><em>기업</em><span>재원 · 기술 · 업(業) · 임직원 · 고객</span></div>
       <div><b>Field</b><em>현장 · 소셜섹터</em><span>당사자 · 전문성 · 핵심 솔루션</span></div>
       <div><b>Community</b><em>지역사회</em><span>주민 · 자산 · 관계 · 실행의 지속성</span></div>
     </div>
-    <p class="key">사회문제의 핵심은 자원이 없는 것이 아니라, 서로 다른 자원이 연결되지 않는 데 있는 경우가 많습니다. 그래서 처음부터 끝까지 계속 잇는 조직, 백본이 필요합니다.</p>
+    <p class="key">사회문제의 핵심은 자원이 없는 것이 아니라, 서로 다른 자원이 연결되지 않는 데 있는 경우가 많습니다. 좋은 협업에는 처음부터 끝까지 계속 연결하는 조직이 필요합니다. 월드비전은 그 백본 역할을 맡습니다.</p>
 
+    <h3 class="bbh"><span>02</span>6-Step Backbone Model</h3>
+    <p class="lede" style="margin-top:8px">지역의 문제를 기업이 참여할 수 있는 사업으로 바꾸고, 사업이 끝난 뒤에도 지역에 남게 하는 여섯 단계입니다.</p>
     <ol class="steps6" aria-label="월드비전 6-Step 백본 모델">
-      <li><span class="n">Step 01</span><b>Discover</b><span class="k">발견</span><p>현장에서 문제와 기회를 발견합니다.</p><span class="pt">주민의 일상에서 출발</span></li>
-      <li><span class="n">Step 02</span><b>Translate</b><span class="k">번역</span><p>기업과 정부가 참여할 수 있는 모델로 번역합니다.</p><span class="pt">지역 과제를 ESG·정책 언어로</span></li>
-      <li><span class="n">Step 03</span><b>Connect</b><span class="k">연결</span><p>핵심 솔루션을 가진 적합한 파트너를 연결합니다.</p><span class="pt">숫자가 아닌 적합도 기준</span></li>
-      <li><span class="n">Step 04</span><b>Orchestrate</b><span class="k">조정</span><p>각자의 역할·재원·일정·실행을 하나의 구조로 맞춥니다.</p><span class="pt">현장 실행까지 책임</span></li>
-      <li><span class="n">Step 05</span><b>Measure</b><span class="k">측정</span><p>실제 변화와 임팩트를 측정하고 증명합니다.</p><span class="pt">제3자 검증까지</span></li>
-      <li><span class="n">Step 06</span><b>Sustain</b><span class="k">지속</span><p>사업이 끝나도 작동하는 거버넌스와 구조를 남깁니다.</p><span class="pt">주민이 스스로 운영</span></li>
+      <li><span class="n">Step 01</span><b>Discover</b><span class="k">발견</span><p>지역의 문제와 기회를 발견합니다.</p><span class="pt">주민의 일상에서 출발</span></li>
+      <li><span class="n">Step 02</span><b>Translate</b><span class="k">번역</span><p>사회문제를 협력 가능한 사업 모델로 구체화합니다.</p><span class="pt">지역 과제를 ESG·정책 언어로</span></li>
+      <li><span class="n">Step 03</span><b>Connect</b><span class="k">연결</span><p>적합한 기업·기관·전문가를 연결합니다.</p><span class="pt">숫자가 아닌 적합도 기준</span></li>
+      <li><span class="n">Step 04</span><b>Orchestrate</b><span class="k">조정</span><p>각 파트너의 역할과 실행 구조를 조정합니다.</p><span class="pt">현장 실행까지 책임</span></li>
+      <li><span class="n">Step 05</span><b>Measure</b><span class="k">측정</span><p>사업 성과와 사회적 변화를 측정합니다.</p><span class="pt">제3자 검증까지</span></li>
+      <li><span class="n">Step 06</span><b>Sustain</b><span class="k">지속</span><p>사업 종료 이후에도 지역에 남는 구조를 마련합니다.</p><span class="pt">주민이 스스로 운영</span></li>
     </ol>
-    <p class="src" style="margin-top:10px">월드비전 6-STEP BACKBONE MODEL</p>
+    <p class="src" style="margin-top:10px">월드비전 6-STEP BACKBONE MODEL · DISCOVER → TRANSLATE → CONNECT → ORCHESTRATE → MEASURE → SUSTAIN</p>
 
-    <h3 style="font-size:20px;font-weight:700;margin-top:52px">왜 월드비전이 백본에 적합한가</h3>
+    <h3 class="bbh"><span>03</span>월드비전의 강점</h3>
     <div class="why-wv" style="margin-top:16px">
-      <div><b>Non-profit</b><span>특정 이익이 아니라 사회문제의 지속가능한 해결이 목적입니다.</span></div>
-      <div><b>Scale</b><span>전국 14개 지역사업본부가 현장에 있고, 한국 직원 600명 이상이 일합니다.</span></div>
-      <div><b>Trusted connector</b><span>정부·기업·주민·전문기관 사이를 연결하고 조정합니다.</span></div>
-      <div><b>Long-term</b><span>사업 기간이 아니라, 현장이 스스로 작동하는 구조를 봅니다.</span></div>
+      <div><b>Field network</b><em class="wvk">전국 현장 네트워크</em><span>전국 14개 지역사업본부가 현장에 있고, 한국 직원 600명 이상이 일합니다. 드림브릿지도 광주전남·경남울산사업본부를 통해 교육지원청과 학교, 복지시설을 연결했습니다.</span></div>
+      <div><b>Partnership</b><em class="wvk">정부·지자체·기업·지역사회 협력 경험</em><span>일죽 목욕탕에서는 10개 기관, 농촌창업도약+에서는 5개 주체가 함께했습니다. 부안 갯벌에서는 부안군과 기업, 전문기관, 시민이 한 캠페인에 참여했습니다.</span></div>
+      <div><b>Planning &amp; PM</b><em class="wvk">기획과 운영 역량</em><span>세 사례 모두 월드비전이 문제 정의, 공동 기획, 파트너 연결, 전체 PM을 맡았습니다. 특정 이익이 아니라 문제 해결이 목적이기에 여러 주체 사이에서 조정자가 될 수 있습니다.</span></div>
+      <div><b>Long-term</b><em class="wvk">지역의 지속가능성을 보는 관점</em><span>사업 기간이 아니라 현장이 스스로 작동하는 구조를 봅니다. 국제 지역개발사업에서는 15~20년을 함께한 뒤, 주민과 지방정부가 스스로 운영할 때 지역을 떠납니다.</span></div>
     </div>
     <p class="key">월드비전의 자산은 돈을 집행하는 능력보다, 서로 다른 주체가 함께 일하게 만드는 능력입니다.</p>
+
+    <h3 class="bbh"><span>04</span>사례로 보는 연결 구조</h3>
+    <p class="lede" style="margin-top:8px">누구를 연결했는지, 각 파트너의 역량을 어디에 썼는지, 그래서 무엇이 달라졌는지 정리했습니다.</p>
+    <div class="proof">
+      <article>
+        <span class="eyebrow">경기 안성시 일죽면 · 10개 기관</span>
+        <h4>세상에서 가장 안전한 목욕탕</h4>
+        <ul class="pmap">
+          <li><b>안성시 · 일죽면</b><span>공간 · 행정 · 시설 승인</span></li>
+          <li><b>이노션</b><span>디자인 · 브랜딩 · 기금</span></li>
+          <li><b>안성의료복지사회적협동조합</b><span>건강 · 돌봄 · 주민 조직화</span></li>
+          <li><b>한국사회가치평가 · 한양대</b><span>외부 성과 검증 · 포럼</span></li>
+          <li class="me"><b>월드비전</b><span>문제 정의 · 파트너 연결 · 취약계층 연계 · 전체 PM</span></li>
+        </ul>
+        <div class="res"><strong>10.7% → 1.2%</strong><span>낙상 경험률 · SROI 3.17배 · 외부 기관 3개년 측정</span></div>
+      </article>
+      <article>
+        <span class="eyebrow">농촌 창업 · 5개 주체</span>
+        <h4>농촌창업도약+ 1기</h4>
+        <ul class="pmap">
+          <li><b>농림축산식품부</b><span>정책 · 예산 · 공모 · 장관상</span></li>
+          <li><b>한국농어촌공사</b><span>현장 운영 · 창업기업 접점</span></li>
+          <li><b>현대백화점그룹</b><span>MD · 유통 · 팝업 · 판로</span></li>
+          <li><b>멘토리</b><span>창업 진단 · 멘토링 · 인큐베이팅</span></li>
+          <li class="me"><b>월드비전</b><span>공동 기획 · 연결 · 전체 PM</span></li>
+        </ul>
+        <div class="res"><strong>15개 기업</strong><span>1기 참여 · 경진대회 → 멘토링 → 더현대 팝업 → 판로</span></div>
+      </article>
+      <article>
+        <span class="eyebrow">전북 부안군 · ESG+N 협력</span>
+        <h4>한평生 갯벌 보전 프로젝트</h4>
+        <ul class="pmap">
+          <li><b>부안군</b><span>행정 · 정책 연계 · 현장 협력</span></li>
+          <li><b>참여 기업</b><span>ESG 재원 · 임직원 · 고객 참여</span></li>
+          <li><b>자연환경국민신탁 · 군산대</b><span>보전 전문성</span></li>
+          <li class="me"><b>월드비전</b><span>기획 · 번역 · 연결 · PM</span></li>
+        </ul>
+        <div class="res"><strong>약 3,000평</strong><span>갯벌 보전 참여(기업 약 2,200 · 시민 약 800) · 염생식물 3만 평 식재 · 임직원 500여 명 방문</span></div>
+      </article>
+    </div>
+    <p class="src" style="margin-top:12px">자료: 월드비전 기후&amp;소셜임팩트팀 발표(2026 사회적가치페스타, 2026.9.21). 농촌창업도약+ '15개 기업'의 의미(창업팀 수 여부)는 확인 필요.</p>
 
     <div class="exit">
       <p class="bye">“잘 가요,<br>월드비전.”</p>
