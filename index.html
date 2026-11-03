@@ -201,7 +201,17 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .cs-big{position:absolute;left:16px;bottom:38px;font-family:var(--display);font-weight:900;font-size:clamp(64px,7.4vw,104px);line-height:.85;color:var(--wv);transform-origin:left bottom}
 .cs-big small{font-family:var(--body);font-size:16px;font-weight:700;color:var(--band-fg);margin-left:6px;letter-spacing:-.02em}
 .cs-cap{position:absolute;left:16px;right:16px;bottom:14px;font-size:13px;line-height:1.4}
-.cs-vis.photo .cs-big,.cs-vis.photo .cs-cap{text-shadow:0 1px 8px rgba(0,0,0,.45)}
+.cs-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none}
+.cs-vis.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(23,20,15,.86) 0%,rgba(23,20,15,.35) 48%,rgba(23,20,15,.05) 100%);z-index:1}
+.cs-num,.cs-big,.cs-cap{z-index:2}
+.cs-vis.photo .cs-num,.cs-vis.photo .cs-cap,.cs-vis.photo .cs-big small{color:#F7F2E8}
+@media (hover:hover){.cs-card:hover .cs-img{transform:scale(1.05)}}
+.ba{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.ba figure{margin:0;position:relative}
+.ba img{display:block;width:100%;height:auto;aspect-ratio:49/30;object-fit:cover}
+.ba figcaption{position:absolute;left:0;top:0;font-family:var(--display);font-weight:900;font-size:18px;text-transform:uppercase;background:var(--band);color:var(--band-fg);padding:3px 10px}
+.ba figure+figure figcaption{background:var(--wv);color:var(--on-wv)}
+@media (max-width:600px){.ba{grid-template-columns:minmax(0,1fr)}}
 .cs-txt{display:flex;flex-direction:column;gap:6px;padding:18px 18px 16px;flex:1}
 .cs-ax{font-family:var(--display);font-weight:900;font-size:20px;text-transform:uppercase;line-height:1;color:var(--wv-deep)}
 .cs-name{font-size:21px;font-weight:800;letter-spacing:-.035em;line-height:1.35}
@@ -498,7 +508,7 @@ footer .w{padding-block:26px;display:grid;gap:6px}
         </span>
       </button>
       <button class="cs-card" type="button" role="tab" id="tab-community" aria-controls="case-community" aria-selected="false" data-case="case-community">
-        <span class="cs-vis" data-img="">
+        <span class="cs-vis" data-img="assets/iljuk-after.jpg">
           <span class="cs-num">02</span>
           <span class="cs-big">1.2<small>%</small></span>
           <span class="cs-cap">낙상 경험률 10.7%에서 1.2%로</span>
@@ -605,7 +615,13 @@ footer .w{padding-block:26px;display:grid;gap:6px}
       <div class="dt">
         <div class="row">
           <h4><small>01 Problem</small>지역에서 발견한 문제</h4>
-          <p>1997년에 지어진 뒤 27년 동안 리모델링하지 않은 목욕탕이었습니다. 이용자의 80%가 65세 이상이었고, 미끄러운 바닥과 탈수, 급격한 체온 변화가 실제 안전 위험이었습니다.</p>
+          <div>
+            <p>1997년에 지어진 뒤 27년 동안 리모델링하지 않은 목욕탕이었습니다. 이용자의 80%가 65세 이상이었고, 미끄러운 바닥과 탈수, 급격한 체온 변화가 실제 안전 위험이었습니다.</p>
+            <div class="ba">
+              <figure><img src="assets/iljuk-before.jpg" alt="리모델링 전 일죽 목욕탕의 어둡고 낡은 돌 욕조" loading="lazy" width="980" height="600"><figcaption>Before</figcaption></figure>
+              <figure><img src="assets/iljuk-after.jpg" alt="리모델링 후 밝은 조명과 초록 타일, 앉아서 씻을 수 있는 자리를 갖춘 일죽 목욕탕" loading="lazy" width="980" height="600"><figcaption>After</figcaption></figure>
+            </div>
+          </div>
         </div>
         <div class="row">
           <h4><small>02 Solution</small>사업으로 푼 방법</h4>
@@ -921,7 +937,10 @@ var csCards = document.querySelectorAll('.cs-card');
 var csPanels = document.querySelectorAll('.cs-panel');
 document.querySelectorAll('.cs-vis[data-img]').forEach(function(v){
   var src = v.getAttribute('data-img');
-  if (src) { v.style.backgroundImage = 'url("' + src + '")'; v.classList.add('photo'); }
+  if (!src) return;
+  var img = document.createElement('img');
+  img.className = 'cs-img'; img.src = src; img.alt = ''; img.loading = 'lazy';
+  v.insertBefore(img, v.firstChild); v.classList.add('photo');
 });
 function selectCase(id, scroll, quiet){
   csCards.forEach(function(c){ c.setAttribute('aria-selected', String(c.getAttribute('data-case') === id)); });
